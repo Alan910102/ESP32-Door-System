@@ -77,7 +77,7 @@
                           ▼
                 Original Door System
 ---
-
+```
 # ✨ Features
 
 ## 🌐 Cross-Network Remote Control
@@ -171,7 +171,7 @@ Node-RED 作為 MQTT Client，提供使用者 Web 遠端控制介面、多門設
 ├── esp32-firmware/       # ESP32 C++ / Arduino 韌體原始碼
 ├── nodered-flows/        # Node-RED Dashboard 匯出的 JSON 流程檔
 └── server-config/        # systemd 服務腳本與 MQTT/DDNS 設定範例
-
+```
 # 🛠 Technology Stack
 
 | Category | Technology |

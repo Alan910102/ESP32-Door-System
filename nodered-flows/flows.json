@@ -1,0 +1,1525 @@
+[
+    {
+        "id": "tab1",
+        "type": "tab",
+        "label": "遙控鐵門控制",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "btn_up_gate1",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門1 上升",
+        "group": "ui_group1",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#3741B8",
+        "className": "",
+        "icon": "fa-arrow-up",
+        "payload": "V0",
+        "payloadType": "str",
+        "topic": "gate1/door",
+        "topicType": "str",
+        "x": 640,
+        "y": 1360,
+        "wires": [
+            [
+                "mqtt_out_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "btn_down_gate1",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門1 下降",
+        "group": "ui_group1",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#9c342d",
+        "className": "",
+        "icon": "fa-arrow-down",
+        "payload": "V1",
+        "payloadType": "str",
+        "topic": "gate1/door",
+        "topicType": "str",
+        "x": 640,
+        "y": 1400,
+        "wires": [
+            [
+                "mqtt_out_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "btn_stop_gate1",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門1 停止",
+        "group": "ui_group1",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#9E9E9E",
+        "className": "",
+        "icon": "stop",
+        "payload": "V4",
+        "payloadType": "str",
+        "topic": "gate1/door",
+        "topicType": "str",
+        "x": 640,
+        "y": 1440,
+        "wires": [
+            [
+                "mqtt_out_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "switch_power_gate1",
+        "type": "ui_switch",
+        "z": "tab1",
+        "name": "門1 電源開關",
+        "label": "",
+        "tooltip": "",
+        "group": "ui_group1",
+        "order": 8,
+        "width": "1",
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "gate1/power",
+        "topicType": "str",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 630,
+        "y": 1480,
+        "wires": [
+            [
+                "mqtt_out_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "led_status_gate1",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 1,
+        "group": "ui_group1",
+        "width": 3,
+        "height": 1,
+        "label": "-<DOOR_1>-",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "connected",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "disconnected",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 590,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "led_response_gate1",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 9,
+        "group": "ui_group1",
+        "width": 3,
+        "height": 1,
+        "label": "作動回應",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ffff00",
+                "value": "1",
+                "valueType": "str"
+            },
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 1090,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_gate1",
+        "type": "mqtt out",
+        "z": "tab1",
+        "name": "Gate1 MQTT Out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "mqtt_broker",
+        "x": 890,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in_power_gate1",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate1 Power In",
+        "topic": "gate1/power",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 180,
+        "y": 1480,
+        "wires": [
+            [
+                "func_power_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "func_power_gate1",
+        "type": "function",
+        "z": "tab1",
+        "name": "同步電源狀態 Gate1",
+        "func": "var lastState = flow.get('lastPowerState_gate1') || '0';\nvar currentState = (msg.payload === '1') ? '1' : '0';\n\nif (currentState !== lastState) {\n    flow.set('lastPowerState_gate1', currentState);\n    return [{payload: currentState, topic: 'gate1/power'}, null];\n} else {\n    return [null, null];\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1480,
+        "wires": [
+            [
+                "switch_power_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_led_gate1",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate1 LED Status In",
+        "topic": "gate1/door/led",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 890,
+        "y": 1480,
+        "wires": [
+            [
+                "led_response_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_status_gate1",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate1 Online Status",
+        "topic": "remote/controller/status/gate1",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 170,
+        "y": 1540,
+        "wires": [
+            [
+                "func_online_status_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "func_online_status_gate1",
+        "type": "function",
+        "z": "tab1",
+        "name": "Gate1 線上狀態 LED",
+        "func": "msg.payload = (msg.payload === 'online') ? 'connected' : 'disconnected';\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1540,
+        "wires": [
+            [
+                "led_status_gate1"
+            ]
+        ]
+    },
+    {
+        "id": "btn_up_gate2",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門2 上升",
+        "group": "ui_group2",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#262e96",
+        "className": "",
+        "icon": "fa-arrow-up",
+        "payload": "V0",
+        "payloadType": "str",
+        "topic": "gate2/door",
+        "topicType": "str",
+        "x": 660,
+        "y": 1820,
+        "wires": [
+            [
+                "mqtt_out_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "btn_down_gate2",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門2 下降",
+        "group": "ui_group2",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#80251f",
+        "className": "",
+        "icon": "fa-arrow-down",
+        "payload": "V1",
+        "payloadType": "str",
+        "topic": "gate2/door",
+        "topicType": "str",
+        "x": 660,
+        "y": 1860,
+        "wires": [
+            [
+                "mqtt_out_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "btn_stop_gate2",
+        "type": "ui_button",
+        "z": "tab1",
+        "d": true,
+        "name": "門2 停止",
+        "group": "ui_group2",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "停止",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#9E9E9E",
+        "className": "",
+        "icon": "stop",
+        "payload": "V4",
+        "payloadType": "str",
+        "topic": "gate2/door",
+        "topicType": "str",
+        "x": 660,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "switch_power_gate2",
+        "type": "ui_switch",
+        "z": "tab1",
+        "name": "門2 電源開關",
+        "label": "",
+        "tooltip": "",
+        "group": "ui_group2",
+        "order": 8,
+        "width": "1",
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "gate2/power",
+        "topicType": "str",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 650,
+        "y": 1940,
+        "wires": [
+            [
+                "mqtt_out_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "led_response_gate2",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 9,
+        "group": "ui_group2",
+        "width": 3,
+        "height": 1,
+        "label": "作動回應",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ffff00",
+                "value": "1",
+                "valueType": "str"
+            },
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 1110,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_gate2",
+        "type": "mqtt out",
+        "z": "tab1",
+        "name": "Gate2 MQTT Out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "mqtt_broker",
+        "x": 910,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in_power_gate2",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate2 Power In",
+        "topic": "gate2/power",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 200,
+        "y": 1940,
+        "wires": [
+            [
+                "func_power_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "func_power_gate2",
+        "type": "function",
+        "z": "tab1",
+        "name": "同步電源狀態 Gate2",
+        "func": "var lastState = flow.get('lastPowerState_gate2') || '0';\nvar currentState = (msg.payload === '1') ? '1' : '0';\n\nif (currentState !== lastState) {\n    flow.set('lastPowerState_gate2', currentState);\n    return [{payload: currentState, topic: 'gate2/power'}, null];\n} else {\n    return [null, null];\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1940,
+        "wires": [
+            [
+                "switch_power_gate2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_led_gate2",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate2 LED Status In",
+        "topic": "gate2/door/led",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 910,
+        "y": 1940,
+        "wires": [
+            [
+                "led_response_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_status_gate2",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate2 Online Status",
+        "topic": "remote/controller/status/gate2",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 190,
+        "y": 2000,
+        "wires": [
+            [
+                "func_online_status_gate2"
+            ]
+        ]
+    },
+    {
+        "id": "func_online_status_gate2",
+        "type": "function",
+        "z": "tab1",
+        "name": "Gate2 線上狀態 LED",
+        "func": "msg.payload = (msg.payload === 'online') ? 'connected' : 'disconnected';\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 2000,
+        "wires": [
+            [
+                "7b17e52077417bf7"
+            ]
+        ]
+    },
+    {
+        "id": "7b17e52077417bf7",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 1,
+        "group": "ui_group2",
+        "width": 3,
+        "height": 1,
+        "label": "-<DOOR_2>-",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "connected",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "disconnected",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 630,
+        "y": 2000,
+        "wires": []
+    },
+    {
+        "id": "cc21e8f07d6a17ad",
+        "type": "exec",
+        "z": "tab1",
+        "command": "ffmpeg -rtsp_transport tcp -i \"rtsp://<USERNAME>:<PASSWORD>@<IP_ADDRESS>:554/stream2\" -c:v libx264 -preset veryfast -tune zerolatency -c:a aac -f hls -hls_time 1 -hls_list_size 3 -hls_flags delete_segments+append_list -hls_segment_type mpegts /home/<USERNAME>/hls/output.m3u8",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "啟動 ffmpeg",
+        "x": 1890,
+        "y": 1380,
+        "wires": [
+            [],
+            [],
+            [
+                "5c1eaa23ba7ecaf7"
+            ]
+        ]
+    },
+    {
+        "id": "5c1eaa23ba7ecaf7",
+        "type": "debug",
+        "z": "tab1",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1900,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "a1fbb2c8ee1f7b34",
+        "type": "ui_template",
+        "z": "tab1",
+        "d": true,
+        "group": "ui_group1",
+        "name": "播放直播",
+        "order": 11,
+        "width": 4,
+        "height": 3,
+        "format": "<video id=\"videoElement\" autoplay muted playsinline></video>\n\n<script src=\"https://cdn.jsdelivr.net/npm/hls.js@latest\"></script>\n<script>\n    (function(){\n    var video = document.getElementById('videoElement');\n    var hlsInstance;\n\n    function reloadHLS() {\n        console.log(\"嘗試載入影片\");  // 普通 debug\n        if (typeof Hls === \"undefined\") {\n            console.error(\"Hls.js 尚未載入!\");\n            return;\n        }\n\n        if(hlsInstance) hlsInstance.destroy();\n        hlsInstance = new Hls();\n        hlsInstance.loadSource('/output.m3u8');  \n        hlsInstance.attachMedia(video);\n\n        hlsInstance.on(Hls.Events.MANIFEST_PARSED, function(){\n            console.log(\"HLS 已解析 manifest\");\n            video.play();\n        });\n\n        hlsInstance.on(Hls.Events.ERROR, function(event, data){\n            console.error(\"HLS 前端播放錯誤:\", data);\n        });\n    }\n\n    // 首次播放\n    setTimeout(reloadHLS, 100);\n\n    // 防止使用者暫停\n    video.addEventListener('pause', function(){ video.play(); });\n\n    // 點擊影片就重新載入，延遲 1 秒\n    video.addEventListener('click', function(){\n        console.log(\"1秒後嘗試重新載入影片\");\n        setTimeout(reloadHLS, 1000);\n    });\n})();\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 1580,
+        "wires": [
+            [
+                "c851ddc1b0203f2d"
+            ]
+        ]
+    },
+    {
+        "id": "c959233313c97463",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "",
+        "group": "51f9d681c7fce41c",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "啟動直播",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1300,
+        "y": 1400,
+        "wires": [
+            [
+                "714ce074f88c6cb7"
+            ]
+        ]
+    },
+    {
+        "id": "btn_up_gate3",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門3 上升",
+        "group": "ui_group3",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#4851c7",
+        "className": "",
+        "icon": "fa-arrow-up",
+        "payload": "V0",
+        "payloadType": "str",
+        "topic": "gate3/door",
+        "topicType": "str",
+        "x": 660,
+        "y": 860,
+        "wires": [
+            [
+                "mqtt_out_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "btn_down_gate3",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "門3 下降",
+        "group": "ui_group3",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#bd4a42",
+        "className": "",
+        "icon": "fa-arrow-down",
+        "payload": "V1",
+        "payloadType": "str",
+        "topic": "gate3/door",
+        "topicType": "str",
+        "x": 660,
+        "y": 900,
+        "wires": [
+            [
+                "mqtt_out_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "led_response_gate3",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 9,
+        "group": "ui_group3",
+        "width": 3,
+        "height": 1,
+        "label": "作動回應",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ffff00",
+                "value": "1",
+                "valueType": "str"
+            },
+            {
+                "color": "#808080",
+                "value": "0",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 1110,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "mqtt_out_gate3",
+        "type": "mqtt out",
+        "z": "tab1",
+        "name": "Gate3 MQTT Out",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "mqtt_broker",
+        "x": 910,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "mqtt_in_power_gate3",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate3 Power In",
+        "topic": "gate3/power",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 200,
+        "y": 1060,
+        "wires": [
+            [
+                "func_power_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "func_power_gate3",
+        "type": "function",
+        "z": "tab1",
+        "name": "同步電源狀態 Gate3",
+        "func": "var lastState = flow.get('lastPowerState_gate3') || '0';\nvar currentState = (msg.payload === '1') ? '1' : '0';\n\nif (currentState !== lastState) {\n    flow.set('lastPowerState_gate3', currentState);\n    return [{payload: currentState, topic: 'gate3/power'}, null];\n} else {\n    return [null, null];\n}\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1060,
+        "wires": [
+            [
+                "34991fca8d2a9182"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "mqtt_in_led_gate3",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate3 LED Status In",
+        "topic": "gate3/door/led",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 910,
+        "y": 1040,
+        "wires": [
+            [
+                "led_response_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_in_status_gate3",
+        "type": "mqtt in",
+        "z": "tab1",
+        "name": "Gate3 Online Status",
+        "topic": "remote/controller/status/gate3",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "mqtt_broker",
+        "inputs": 0,
+        "x": 190,
+        "y": 1120,
+        "wires": [
+            [
+                "func_online_status_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "func_online_status_gate3",
+        "type": "function",
+        "z": "tab1",
+        "name": "Gate3 線上狀態 LED",
+        "func": "msg.payload = (msg.payload === 'online') ? 'connected' : 'disconnected';\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1120,
+        "wires": [
+            [
+                "led_status_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "led_status_gate3",
+        "type": "ui_led",
+        "z": "tab1",
+        "order": 1,
+        "group": "ui_group3",
+        "width": 3,
+        "height": 1,
+        "label": "-<DOOR_3>-",
+        "labelPlacement": "right",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "connected",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "disconnected",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 630,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "c851ddc1b0203f2d",
+        "type": "debug",
+        "z": "tab1",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "792473dab4d2ec2a",
+        "type": "exec",
+        "z": "tab1",
+        "command": "pkill -f \"ffmpeg.*output.m3u8\"",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "關閉 ffmpeg",
+        "x": 1610,
+        "y": 1500,
+        "wires": [
+            [],
+            [],
+            [
+                "5c1eaa23ba7ecaf7"
+            ]
+        ]
+    },
+    {
+        "id": "d08a19204cb6fd91",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "",
+        "group": "51f9d681c7fce41c",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "關閉直播",
+        "tooltip": "",
+        "color": "red",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1320,
+        "y": 1500,
+        "wires": [
+            [
+                "792473dab4d2ec2a"
+            ]
+        ]
+    },
+    {
+        "id": "d449a9c751e61393",
+        "type": "inject",
+        "z": "tab1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1290,
+        "y": 1340,
+        "wires": [
+            [
+                "714ce074f88c6cb7"
+            ]
+        ]
+    },
+    {
+        "id": "1611716a3c24de77",
+        "type": "inject",
+        "z": "tab1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1270,
+        "y": 1460,
+        "wires": [
+            [
+                "792473dab4d2ec2a"
+            ]
+        ]
+    },
+    {
+        "id": "714ce074f88c6cb7",
+        "type": "exec",
+        "z": "tab1",
+        "command": "rm -f /home/<USERNAME>/hls/*.m3u8 /home/<USERNAME>/hls/*.ts",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "清空/hls資料夾",
+        "x": 1520,
+        "y": 1380,
+        "wires": [
+            [
+                "5c1eaa23ba7ecaf7",
+                "62567e767badbc1b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "62567e767badbc1b",
+        "type": "delay",
+        "z": "tab1",
+        "name": "2s delay",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1700,
+        "y": 1360,
+        "wires": [
+            [
+                "cc21e8f07d6a17ad"
+            ]
+        ]
+    },
+    {
+        "id": "9fdeb09eca19d675",
+        "type": "inject",
+        "z": "tab1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1690,
+        "y": 1260,
+        "wires": [
+            [
+                "cc21e8f07d6a17ad"
+            ]
+        ]
+    },
+    {
+        "id": "eb6001c17164edc7",
+        "type": "ui_template",
+        "z": "tab1",
+        "d": true,
+        "group": "ui_group3",
+        "name": "播放直播",
+        "order": 11,
+        "width": 4,
+        "height": 3,
+        "format": "<div style=\"position: relative; width: 100%; max-width: 640px; margin: auto;\">\n    <!-- 影片容器 -->\n    <div id=\"streamContainer\">\n        <img id=\"liveStream\" src=\"\" style=\"width:100%; display:block;\">\n    </div>\n\n    <!-- 覆蓋提示 -->\n    <div id=\"overlay\" style=\"\n      position: absolute;\n      top: 0; left: 0; right: 0; bottom: 0;\n      background: rgba(128,128,128,0.7); /* 灰底，半透明 */\n      color: white; /* 白字 */\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      font-size: 20px;\n      cursor: pointer;\n      text-align: center;\n      text-shadow: 1px 1px 2px #000; /* 增加可讀性 */\n  \">\n        點擊開始觀看直播\n    </div>\n</div>\n\n<script>\n    document.getElementById(\"overlay\").addEventListener(\"click\", function() {\n  // 開始串流\n  document.getElementById(\"liveStream\").src = \"http://<YOUR_DDNS_DOMAIN>/stream\";\n  // 隱藏提示\n  this.style.display = \"none\";\n});\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1340,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ccda3597241c150f",
+        "type": "ui_switch",
+        "z": "tab1",
+        "name": "門3打光燈",
+        "label": "打光",
+        "tooltip": "",
+        "group": "ui_group3",
+        "order": 5,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "gate3/door",
+        "topicType": "str",
+        "onvalue": "V4",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "V5",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 650,
+        "y": 960,
+        "wires": [
+            [
+                "mqtt_out_gate3",
+                "f65fd96851c04a1a"
+            ]
+        ]
+    },
+    {
+        "id": "34991fca8d2a9182",
+        "type": "ui_switch",
+        "z": "tab1",
+        "name": "門3 電源開關",
+        "label": "",
+        "tooltip": "",
+        "group": "ui_group3",
+        "order": 8,
+        "width": 1,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "gate3/power",
+        "topicType": "str",
+        "onvalue": "1",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "<i class=\"fa fa-power-off\" aria-hidden=\"true\"></i>",
+        "x": 650,
+        "y": 1060,
+        "wires": [
+            [
+                "mqtt_out_gate3"
+            ]
+        ]
+    },
+    {
+        "id": "bab69cc5ba76ee2d",
+        "type": "trigger",
+        "z": "tab1",
+        "name": "",
+        "op1": "",
+        "op2": "V5",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "20",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1000,
+        "y": 960,
+        "wires": [
+            [
+                "ccda3597241c150f"
+            ]
+        ]
+    },
+    {
+        "id": "f65fd96851c04a1a",
+        "type": "switch",
+        "z": "tab1",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "V4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 830,
+        "y": 960,
+        "wires": [
+            [
+                "bab69cc5ba76ee2d"
+            ]
+        ]
+    },
+    {
+        "id": "d7e6f4bcb56366b8",
+        "type": "ui_template",
+        "z": "tab1",
+        "group": "",
+        "name": "title_color_css",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    /* 每群組標題色 */\n    .nr-dashboard-cardtitle {\n        color: #ffffff !important;\n        opacity: 1 !important;\n        /* 防止被暗色主題的透明度影響 */\n    }\n\n    /* 針對側邊欄選單與標題列文字 \n    .md-toolbar-tools h2,\n    .nr-dashboard-sidebar .md-button {\n        color: #ffffff !important;\n    }*/\n\n    /* switch開的顏色*/\n    md-switch.md-checked .md-bar {\n        background-color: #167c3b !important;\n    }\n\n    .md-sidenav-left md-list-item p{\n        color: #000000 !important;\n    }\n    .transparent-btn button {\n    background: transparent !important;\n    box-shadow: none !important;\n    border: none !important;\n    }\n\n    .transparent-btn i {\n        font-size: 32px;\n    }\n</style>\n<!--\n#nr-dashboard > md-content > section > md-sidenav > md-list > md-list-item:nth-child(1) > div > button\n#nr-dashboard > md-content > section > md-sidenav > md-list > md-list-item:nth-child(1) > div > button\n#nr-dashboard > md-content > section > md-sidenav > md-list > md-list-item:nth-child(1) > div > button\n#nr-dashboard > md-content > section > md-sidenav > md-list > md-list-item._md-button-wrap._md.nr-menu-item-active > div\n> button\n#nr-dashboard > md-content > section > md-sidenav > md-list > md-list-item._md-button-wrap._md.nr-menu-item-active > div\n> button*/\n-->",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "title_color",
+        "x": 1520,
+        "y": 1940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05f9f510e006c031",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "fa-power-off icon",
+        "group": "ui_group3",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "transparent-btn",
+        "icon": "fa-power-off",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1170,
+        "y": 1120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2477d1267016806",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "fa-power-off icon",
+        "group": "ui_group1",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "transparent-btn",
+        "icon": "fa-power-off",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 1070,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48bda337ee3721ac",
+        "type": "ui_button",
+        "z": "tab1",
+        "name": "fa-power-off icon",
+        "group": "ui_group2",
+        "order": 7,
+        "width": 1,
+        "height": 1,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "transparent-btn",
+        "icon": "fa-power-off",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 850,
+        "y": 2060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "139d26e95904d2d2",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group3",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c0a2980dd85d9e48",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group3",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "110c0973d7762bf7",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group3",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "951065008ed2e4c5",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group1",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "c8b61fe3b80ba676",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group1",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "515e2b3cea9d3fd2",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group2",
+        "order": 2,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "18762dd51e109bca",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group2",
+        "order": 5,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "2793b39c1d6c51fc",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group2",
+        "order": 10,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "9a7cf2dd7b634acb",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group1",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c9cea6342ff87c46",
+        "type": "ui_spacer",
+        "z": "tab1",
+        "name": "spacer",
+        "group": "ui_group2",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "ui_group1",
+        "type": "ui_group",
+        "name": "-<DOOR_1>-",
+        "tab": "ui_tab1",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "Alan MQTT Broker",
+        "broker": "<SERVER_DDNS_DOMAIN>",
+        "port": "1883",
+        "clientid": "node_red_ui",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "ui_group2",
+        "type": "ui_group",
+        "name": "-<DOOR_2>-",
+        "tab": "ui_tab1",
+        "order": 3,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "51f9d681c7fce41c",
+        "type": "ui_group",
+        "name": "Camera",
+        "tab": "d77a3bc7f5cc1e3b",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ui_group3",
+        "type": "ui_group",
+        "name": "-<DOOR_3>-",
+        "tab": "ui_tab1",
+        "order": 1,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ui_tab1",
+        "type": "ui_tab",
+        "name": "鐵門控制",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "d77a3bc7f5cc1e3b",
+        "type": "ui_tab",
+        "name": "監控",
+        "icon": "videocam"
+    }
+]

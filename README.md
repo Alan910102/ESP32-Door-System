@@ -76,8 +76,9 @@
                           │
                           ▼
                 Original Door System
----
 ```
+---
+
 # ✨ Features
 
 ## 🌐 Cross-Network Remote Control
@@ -194,7 +195,7 @@ Node-RED 作為 MQTT Client，提供使用者 Web 遠端控制介面、多門設
 - 具備完整設備狀態監控與全自動斷線重連機制
 
 ---
-
+<!--
 # 📷 Demo & Showcase
 
 - [ ] Node-RED Dashboard 介面截圖
@@ -202,3 +203,5 @@ Node-RED 作為 MQTT Client，提供使用者 Web 遠端控制介面、多門設
 - [ ] 門控系統運作示範
 
 ---
+
+-->
